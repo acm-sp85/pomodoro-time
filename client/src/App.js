@@ -4,7 +4,7 @@ import Timer from './components/Timer.js';
 function App() {
   return (
     <div>
-      <h1 style={{ 'text-align': 'center' }}>Pomodoro Time</h1>
+      {/* <h1 style={{ 'text-align': 'center' }} className="title">POMODORO TIME</h1> */}
       <Timer />
     </div>
   );

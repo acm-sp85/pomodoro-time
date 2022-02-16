@@ -1,14 +1,39 @@
+:root {
+  --black: rgb(40, 40, 40);
+}
+
 * {
   margin: 0px;
 }
 body {
-  background-color: rgb(121, 194, 170);
+  background-color: rgb(126, 179, 161);
+}
+
+.title {
+  font-family: 'Poiret One', cursive; 
+  letter-spacing: 1vw;
+  margin-top: 20px;
 }
 .main-container {
   margin: auto;
   min-height: 90vh;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
   display: flex;
+
+}
+
+.timer-numbers {
+  font-size: 25vw;
+  color: var(--black);
+  font-family: 'Six Caps', sans-serif;
+  letter-spacing: 5vw;
+}
+.start-button {
+  color: var(--black);
+  text-align: center;
+  font-size: 2.5vw;
+  letter-spacing: 0.5vw;
+  font-family: 'Six Caps', sans-serif;
 }
