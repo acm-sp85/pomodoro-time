@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
 function Timer() {
-  let [seconds, setSeconds] = useState(11);
-  let [minutes, setMinutes] = useState(10);
+  let [seconds, setSeconds] = useState('00');
+  let [minutes, setMinutes] = useState('25');
   let [toggle, setToggle] = useState(false);
+  let [startTimer, setStartTimer] = useState();
   let countDown = () => {
     if (seconds > 0 && minutes >= 0) {
       if (seconds <= 10) {
@@ -22,19 +23,40 @@ function Timer() {
     } else {
     }
   };
+
+  const timer = () => {
+    if (!toggle) {
+      console.log('start');
+      setToggle((toggle = !toggle));
+      setStartTimer(setInterval(countDown, 1000));
+    } else {
+      clearInterval(startTimer);
+      console.log('stop');
+      setToggle((toggle = !toggle));
+    }
+  };
+  const reset = () => {
+    console.log('reset');
+  };
   return (
     <div>
       <div className="main-container">
         <h3 className="timer-numbers">{`${minutes}:${seconds}`}</h3>
-        <p
-          className="start-button"
-          onClick={() => {
-            setInterval(countDown, 1000);
-            setToggle((toggle = !toggle));
-          }}
-        >
-          {toggle ? 'STOP' : 'START'}
-        </p>
+
+        {toggle ? (
+          <p className="start-button" onClick={timer}>
+            PAUSE
+          </p>
+        ) : (
+          <div>
+            <p className="start-button" onClick={timer}>
+              START
+            </p>
+            {/* <p className="start-button" onClick={reset}>
+              RESET
+            </p> */}
+          </div>
+        )}
       </div>
     </div>
   );
