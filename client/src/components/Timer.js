@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-function Timer() {
-  let [seconds, setSeconds] = useState('00');
-  let [minutes, setMinutes] = useState('25');
+function Timer(props) {
+  let [seconds, setSeconds] = useState(props.seconds || '00');
+  let [minutes, setMinutes] = useState(props.minutes || '25');
   let [toggle, setToggle] = useState(false);
   let [startTimer, setStartTimer] = useState();
   let countDown = () => {
@@ -35,8 +35,8 @@ function Timer() {
   };
   const reset = () => {
     console.log('reset');
-    setSeconds('00');
-    setMinutes('25');
+    setSeconds(props.seconds || '00');
+    setMinutes(props.minutes || '25');
   };
   return (
     <div>
@@ -44,15 +44,15 @@ function Timer() {
         <h3 className="timer-numbers">{`${minutes}:${seconds}`}</h3>
 
         {toggle ? (
-          <p className="start-button" onClick={timer}>
+          <p className="buttons" onClick={timer}>
             PAUSE
           </p>
         ) : (
           <div>
-            <p className="start-button" onClick={timer}>
+            <p className="buttons" onClick={timer}>
               START
             </p>
-            <p className="start-button" onClick={reset}>
+            <p className="buttons" onClick={reset}>
               RESET
             </p>
           </div>
