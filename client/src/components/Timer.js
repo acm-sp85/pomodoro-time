@@ -26,17 +26,17 @@ function Timer() {
 
   const timer = () => {
     if (!toggle) {
-      console.log('start');
       setToggle((toggle = !toggle));
       setStartTimer(setInterval(countDown, 1000));
     } else {
       clearInterval(startTimer);
-      console.log('stop');
       setToggle((toggle = !toggle));
     }
   };
   const reset = () => {
     console.log('reset');
+    setSeconds('00');
+    setMinutes('25');
   };
   return (
     <div>
@@ -52,9 +52,9 @@ function Timer() {
             <p className="start-button" onClick={timer}>
               START
             </p>
-            {/* <p className="start-button" onClick={reset}>
+            <p className="start-button" onClick={reset}>
               RESET
-            </p> */}
+            </p>
           </div>
         )}
       </div>
