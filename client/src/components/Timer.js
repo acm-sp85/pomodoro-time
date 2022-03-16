@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Howl, Howler } from 'howler';
+import Bell from '../audioclips/bell-01.mp3';
 
 function Timer(props) {
   let [seconds, setSeconds] = useState(0);
@@ -8,14 +10,30 @@ function Timer(props) {
   let [toggle, setToggle] = useState(false);
   let [startTimer, setStartTimer] = useState();
 
+  const { Howl, Howler } = require('howler');
+
+  const playSound = (src) => {
+    const sound = new Howl({
+      src,
+    });
+
+    sound.play();
+    console.log('sound playing?');
+  };
+
+  const audioClips = [Bell];
+
   let countDown = () => {
     if (seconds === 0 && minutes === 0) {
       setToggleTakingBreak(!toggleTakingBreak);
       if (toggleTakingBreak) {
         console.log('taking a break');
+        playSound(audioClips);
+
         setMinutes((minutes = props.minutesBreak));
       } else {
         console.log('time to work');
+        playSound(audioClips);
         setMinutes((minutes = props.minutesPomodoro));
       }
     } else if (seconds === 0) {
@@ -44,6 +62,8 @@ function Timer(props) {
       setMinutes(props.minutesBreak || 5);
     }
   };
+
+  Howler.volume(0.5);
   return (
     <div>
       <div className="main-container">
