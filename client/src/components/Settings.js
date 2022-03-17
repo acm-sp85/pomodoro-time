@@ -1,9 +1,25 @@
-import React from 'react';
+import { useEffect } from 'react';
 
-function Settings() {
+function Settings(props) {
   const click = () => {
     console.log('clicked');
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  const handleKeyDown = (e) => {
+    console.log('get me out');
+    if (e.key === 'Escape') {
+      props.setShowModal(!props.showModal);
+    }
+  };
+
   return (
     <div>
       <p className="buttons-inverted" onClick={click}>

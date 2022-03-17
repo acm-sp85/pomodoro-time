@@ -9,20 +9,10 @@ function Timer(props) {
   let [toggleTakingBreak, setToggleTakingBreak] = useState(true);
   let [toggle, setToggle] = useState(false);
   let [startTimer, setStartTimer] = useState();
-
   const { Howl, Howler } = require('howler');
-
-  const playSound = (src) => {
-    const sound = new Howl({
-      src,
-    });
-
-    sound.play();
-    console.log('sound playing?');
-  };
-
   const audioClips = [Bell];
 
+  //COUNTDOWN LOGIC
   let countDown = () => {
     if (seconds === 0 && minutes === 0) {
       setToggleTakingBreak(!toggleTakingBreak);
@@ -44,6 +34,7 @@ function Timer(props) {
     }
   };
 
+  //START-PAUSE action
   const timer = () => {
     if (!toggle) {
       setToggle((toggle = !toggle));
@@ -53,14 +44,23 @@ function Timer(props) {
       setToggle((toggle = !toggle));
     }
   };
+
+  //RESET BUTTON
   const reset = () => {
-    console.log('reset');
     setSeconds(0);
     if (toggleTakingBreak) {
       setMinutes(props.minutesPomodoro || 45);
     } else {
       setMinutes(props.minutesBreak || 5);
     }
+  };
+  //AUDIO EFFECT PLAYER
+  const playSound = (src) => {
+    const sound = new Howl({
+      src,
+    });
+
+    sound.play();
   };
 
   Howler.volume(0.5);
