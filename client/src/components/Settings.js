@@ -14,29 +14,48 @@ function Settings(props) {
   }, []);
 
   const handleKeyDown = (e) => {
-    console.log('get me out');
     if (e.key === 'Escape') {
       props.setShowModal(!props.showModal);
     }
   };
 
+  const handleChange = () => {
+    console.log('holas');
+  };
+
   return (
     <div>
-      <p className="buttons-inverted" onClick={click}>
-        POMODORO DURATION
-      </p>
-      <p className="buttons-inverted" onClick={click}>
-        BREAK DURATION
-      </p>
-      <p className="buttons-inverted" onClick={click}>
-        AUTOSTART
-      </p>
-      <p className="buttons-inverted" onClick={click}>
-        SOUND
-      </p>
-      <p className="buttons-inverted" onClick={click}>
-        PRESETS
-      </p>
+      <form>
+        <label className="buttons-inverted">POMODORO DURATION</label>
+        <input
+          name="minutesPomodoro"
+          value={props.minutesPomodoro}
+          onChange={(e) => props.setMinutesPomodoro(parseInt(e.target.value))}
+        ></input>
+        <br />
+        <label className="buttons-inverted ">BREAK DURATION</label>
+        <input
+          name="minutesBreak"
+          value={props.minutesBreak}
+          onChange={(e) => props.setMinutesBreak(parseInt(e.target.value))}
+        ></input>
+        <br />
+        <label className="buttons-inverted">AUTOSTART</label>
+        <input type="checkbox"></input>
+        <br />
+        <label className="buttons-inverted">SOUND</label>
+        <select>
+          <option value="bell">Bell</option>
+          <option value="whoops">Whoops</option>
+        </select>
+        <br />
+        <label className="buttons-inverted">PRESETS</label>
+        <select>
+          <option value="long">Long Break</option>
+          <option value="short">Short Break</option>
+        </select>
+        <br />
+      </form>
     </div>
   );
 }

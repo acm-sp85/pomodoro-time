@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import Settings from './components/Settings';
 
 function App() {
-  let [minutesPomodoro, setMinutesPomodoro] = useState(45);
-  let [minutesBreak, setMinutesBreak] = useState(15);
+  let [minutesPomodoro, setMinutesPomodoro] = useState(1);
+  let [minutesBreak, setMinutesBreak] = useState(1);
   let [showModal, setShowModal] = useState(false);
   return (
     <div>
@@ -16,7 +16,14 @@ function App() {
       </p>
       {showModal ? (
         <div className="modal main-container">
-          <Settings setShowModal={setShowModal} showModal={showModal} />
+          <Settings
+            setShowModal={setShowModal}
+            showModal={showModal}
+            minutesPomodoro={minutesPomodoro}
+            minutesBreak={minutesBreak}
+            setMinutesPomodoro={setMinutesPomodoro}
+            setMinutesBreak={setMinutesBreak}
+          />
         </div>
       ) : (
         <></>

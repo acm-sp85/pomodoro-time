@@ -6,7 +6,7 @@ function Timer(props) {
   let [seconds, setSeconds] = useState(0);
   let [minutes, setMinutes] = useState(props.minutesPomodoro || 10);
   let [minutesBreak, setMinutesBreak] = useState(props.minutesBreak || 10);
-  let [toggleTakingBreak, setToggleTakingBreak] = useState(true);
+  let [toggleTakingBreak, setToggleTakingBreak] = useState(false);
   let [toggle, setToggle] = useState(false);
   let [startTimer, setStartTimer] = useState();
   const { Howl, Howler } = require('howler');
@@ -15,16 +15,15 @@ function Timer(props) {
   //COUNTDOWN LOGIC
   let countDown = () => {
     if (seconds === 0 && minutes === 0) {
-      setToggleTakingBreak(!toggleTakingBreak);
+      playSound(audioClips);
       if (toggleTakingBreak) {
-        console.log('taking a break');
-        playSound(audioClips);
-
-        setMinutes((minutes = props.minutesBreak));
-      } else {
-        console.log('time to work');
-        playSound(audioClips);
+        setToggleTakingBreak((toggleTakingBreak = !toggleTakingBreak));
         setMinutes((minutes = props.minutesPomodoro));
+        console.log('time to work');
+      } else if (!toggleTakingBreak) {
+        setToggleTakingBreak((toggleTakingBreak = !toggleTakingBreak));
+        setMinutes((minutes = props.minutesBreak));
+        console.log('taking a break');
       }
     } else if (seconds === 0) {
       setSeconds((seconds = 59));
@@ -48,7 +47,7 @@ function Timer(props) {
   //RESET BUTTON
   const reset = () => {
     setSeconds(0);
-    if (toggleTakingBreak) {
+    if (!toggleTakingBreak) {
       setMinutes(props.minutesPomodoro || 45);
     } else {
       setMinutes(props.minutesBreak || 5);
