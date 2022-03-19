@@ -21,7 +21,7 @@ function Settings(props) {
 
   const handleChange = (e) => {
     console.log(parseInt(e.target.value));
-    props.setSoundNumber(e.target.value);
+    props.setSoundNumber(parseInt(e.target.value));
   };
 
   return (
@@ -45,7 +45,7 @@ function Settings(props) {
         <input type="checkbox"></input>
         <br />
         <label className="buttons-inverted">SOUND</label>
-        <select onChange={handleChange} defaultValue={props.soundNumber}>
+        <select onChange={handleChange} value={props.soundNumber}>
           <option value="0">Bell</option>
           <option value="1">Gong</option>
           <option value="2">Duck</option>
