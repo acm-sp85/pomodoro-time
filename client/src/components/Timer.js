@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Howl, Howler } from 'howler';
 import Bell from '../audioclips/bell-01.mp3';
+import Gong from '../audioclips/gong.mp3';
+import Duck from '../audioclips/duck.mp3';
 
 function Timer(props) {
   let [seconds, setSeconds] = useState(0);
@@ -9,13 +11,14 @@ function Timer(props) {
   let [toggleTakingBreak, setToggleTakingBreak] = useState(false);
   let [toggle, setToggle] = useState(false);
   let [startTimer, setStartTimer] = useState();
+
   const { Howl, Howler } = require('howler');
-  const audioClips = [Bell];
+  const audioClips = [Bell, Gong, Duck];
 
   //COUNTDOWN LOGIC
   let countDown = () => {
     if (seconds === 0 && minutes === 0) {
-      playSound(audioClips);
+      playSound(audioClips[props.soundNumber]);
       if (toggleTakingBreak) {
         setToggleTakingBreak((toggleTakingBreak = !toggleTakingBreak));
         setMinutes((minutes = props.minutesPomodoro));
