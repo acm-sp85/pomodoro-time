@@ -19,9 +19,17 @@ function Settings(props) {
     }
   };
 
-  const handleChange = (e) => {
-    console.log(parseInt(e.target.value));
+  const handleChangeSound = (e) => {
     props.setSoundNumber(parseInt(e.target.value));
+  };
+  const handleChangePreset = (e) => {
+    if (e.target.value === 'long') {
+      props.setMinutesBreak(15);
+      props.setMinutesPomodoro(45);
+    } else if (e.target.value === 'short') {
+      props.setMinutesBreak(5);
+      props.setMinutesPomodoro(55);
+    }
   };
 
   return (
@@ -45,14 +53,15 @@ function Settings(props) {
         <input type="checkbox"></input>
         <br />
         <label className="buttons-inverted">SOUND</label>
-        <select onChange={handleChange} value={props.soundNumber}>
+        <select onChange={handleChangeSound} value={props.soundNumber}>
           <option value="0">Bell</option>
           <option value="1">Gong</option>
           <option value="2">Duck</option>
         </select>
         <br />
         <label className="buttons-inverted">PRESETS</label>
-        <select>
+        <select onChange={handleChangePreset}>
+          <option value="">select</option>
           <option value="long">Long Break</option>
           <option value="short">Short Break</option>
         </select>
