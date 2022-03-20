@@ -1,13 +1,17 @@
 import './App.css';
 import Timer from './components/Timer.js';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Settings from './components/Settings';
 
 function App() {
   let [minutesPomodoro, setMinutesPomodoro] = useState(1);
-  let [minutesBreak, setMinutesBreak] = useState(1);
+  let [minutesBreak, setMinutesBreak] = useState(2);
   let [showModal, setShowModal] = useState(false);
   let [soundNumber, setSoundNumber] = useState(0);
+
+  useEffect(() => {
+    console.log('loading up the timmer component');
+  }, [minutesPomodoro, minutesBreak]);
   return (
     <div>
       {/* <h1 style={{ 'text-align': 'center' }} className="title">POMODORO TIME</h1> */}

@@ -56,6 +56,21 @@ function Timer(props) {
       setMinutes(props.minutesBreak || 5);
     }
   };
+
+  //SKIP
+  const skip = () => {
+    if (!toggleTakingBreak) {
+      setMinutes(props.minutesPomodoro || 45);
+      setSeconds((seconds = 0));
+      setToggleTakingBreak((toggleTakingBreak = !toggleTakingBreak));
+      console.log('skipping the work sesh');
+    } else {
+      setMinutes(props.minutesBreak || 5);
+      setSeconds((seconds = 0));
+      setToggleTakingBreak((toggleTakingBreak = !toggleTakingBreak));
+      console.log('skipping the break');
+    }
+  };
   //AUDIO EFFECT PLAYER
   const playSound = (src) => {
     const sound = new Howl({
@@ -72,9 +87,11 @@ function Timer(props) {
         <h3 className="timer-numbers">{`${minutes}:${seconds}`}</h3>
 
         {toggle ? (
-          <p className="buttons" onClick={timer}>
-            PAUSE
-          </p>
+          <div>
+            <p className="buttons" onClick={timer}>
+              PAUSE
+            </p>
+          </div>
         ) : (
           <div>
             <p className="buttons" onClick={timer}>
@@ -82,6 +99,9 @@ function Timer(props) {
             </p>
             <p className="buttons" onClick={reset}>
               RESET
+            </p>
+            <p className="buttons" onClick={skip}>
+              SKIP
             </p>
           </div>
         )}
