@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Settings from './components/Settings';
 
 function App() {
-  let [minutesPomodoro, setMinutesPomodoro] = useState(1);
-  let [minutesBreak, setMinutesBreak] = useState(2);
+  let [minutesPomodoro, setMinutesPomodoro] = useState(50);
+  let [minutesBreak, setMinutesBreak] = useState(10);
   let [showModal, setShowModal] = useState(false);
   let [soundNumber, setSoundNumber] = useState(0);
 

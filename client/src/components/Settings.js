@@ -67,7 +67,7 @@ function Settings(props) {
         </select>
         <br />
       </form>
-      <button>APPLY</button>
+      <button>RESET & APPLY</button>
     </div>
   );
 }

@@ -59,16 +59,16 @@ function Timer(props) {
 
   //SKIP
   const skip = () => {
-    if (!toggleTakingBreak) {
+    if (toggleTakingBreak) {
       setMinutes(props.minutesPomodoro || 45);
       setSeconds((seconds = 0));
       setToggleTakingBreak((toggleTakingBreak = !toggleTakingBreak));
-      console.log('skipping the work sesh');
+      console.log('skipping the break');
     } else {
       setMinutes(props.minutesBreak || 5);
       setSeconds((seconds = 0));
       setToggleTakingBreak((toggleTakingBreak = !toggleTakingBreak));
-      console.log('skipping the break');
+      console.log('skipping the work sesh');
     }
   };
   //AUDIO EFFECT PLAYER
@@ -84,7 +84,11 @@ function Timer(props) {
   return (
     <div>
       <div className="main-container">
-        <h3 className="timer-numbers">{`${minutes}:${seconds}`}</h3>
+        {seconds.toString().length === 1 ? (
+          <h3 className="timer-numbers">{`${minutes}:0${seconds}`}</h3>
+        ) : (
+          <h3 className="timer-numbers">{`${minutes}:${seconds}`}</h3>
+        )}
 
         {toggle ? (
           <div>
