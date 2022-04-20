@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 function Settings(props) {
   const click = () => {
     console.log('clicked');
+    props.stopTimer();
+    props.setShowModal(!props.showModal);
   };
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -67,7 +69,7 @@ function Settings(props) {
         </select>
         <br />
       </form>
-      <button>RESET & APPLY</button>
+      <button onClick={click}>SAVE CHANGES FOR NEXT POMODORO</button>
     </div>
   );
 }

@@ -12,9 +12,13 @@ function App() {
   useEffect(() => {
     console.log('loading up the timmer component');
   }, [minutesPomodoro, minutesBreak]);
+
+  const stopTimer = () => {
+    console.log('stopping the timer');
+  };
+
   return (
     <div>
-      {/* <h1 style={{ 'text-align': 'center' }} className="title">POMODORO TIME</h1> */}
       <Timer
         minutesPomodoro={minutesPomodoro}
         minutesBreak={minutesBreak}
@@ -34,6 +38,7 @@ function App() {
             setMinutesPomodoro={setMinutesPomodoro}
             setMinutesBreak={setMinutesBreak}
             setSoundNumber={setSoundNumber}
+            stopTimer={stopTimer}
           />
         </div>
       ) : (
