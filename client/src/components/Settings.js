@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 function Settings(props) {
-  const click = () => {
+  const saveChanges = () => {
     console.log('clicked');
     props.stopTimer();
     props.setShowModal(!props.showModal);
@@ -69,7 +69,7 @@ function Settings(props) {
         </select>
         <br />
       </form>
-      <button onClick={click}>SAVE CHANGES FOR NEXT POMODORO</button>
+      <button onClick={saveChanges}>SAVE CHANGES FOR NEXT POMODORO</button>
     </div>
   );
 }

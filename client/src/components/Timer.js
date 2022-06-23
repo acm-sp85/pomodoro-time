@@ -10,6 +10,7 @@ function Timer(props) {
   let [minutesBreak, setMinutesBreak] = useState(props.minutesBreak || 10);
   let [toggleTakingBreak, setToggleTakingBreak] = useState(false);
   let [toggle, setToggle] = useState(false);
+  let [timerActive, setTimerActive] = useState(props.timerActive);
   let [startTimer, setStartTimer] = useState();
 
   const { Howl, Howler } = require('howler');
@@ -40,10 +41,12 @@ function Timer(props) {
   const timer = () => {
     if (!toggle) {
       setToggle((toggle = !toggle));
+      setTimerActive((timerActive = 'START'));
       setStartTimer(setInterval(countDown, 1000));
     } else {
       clearInterval(startTimer);
       setToggle((toggle = !toggle));
+      setTimerActive((timerActive = 'RESUME'));
     }
   };
 
@@ -81,6 +84,7 @@ function Timer(props) {
   };
 
   Howler.volume(0.5);
+  console.log(props);
   return (
     <div>
       <div className="main-container">
@@ -99,7 +103,7 @@ function Timer(props) {
         ) : (
           <div>
             <p className="buttons" onClick={timer}>
-              START
+              {timerActive}
             </p>
             <p className="buttons" onClick={reset}>
               RESET

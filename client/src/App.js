@@ -8,6 +8,7 @@ function App() {
   let [minutesBreak, setMinutesBreak] = useState(10);
   let [showModal, setShowModal] = useState(false);
   let [soundNumber, setSoundNumber] = useState(0);
+  let [timerActive, setTimerActive] = useState('START');
 
   useEffect(() => {
     console.log('loading up the timmer component');
@@ -23,6 +24,8 @@ function App() {
         minutesPomodoro={minutesPomodoro}
         minutesBreak={minutesBreak}
         soundNumber={soundNumber}
+        timerActive={timerActive}
+        setTimerActive={setTimerActive}
       />
       <p onClick={() => setShowModal(!showModal)} className="buttons">
         SETTINGS
