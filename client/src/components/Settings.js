@@ -42,17 +42,17 @@ function Settings(props) {
           name="minutesPomodoro"
           value={props.minutesPomodoro}
           onChange={(e) => props.setMinutesPomodoro(parseInt(e.target.value))}
-        ></input>
+        />
         <br />
         <label className="buttons-inverted ">BREAK DURATION</label>
         <input
           name="minutesBreak"
           value={props.minutesBreak}
           onChange={(e) => props.setMinutesBreak(parseInt(e.target.value))}
-        ></input>
+        />
         <br />
-        <label className="buttons-inverted">AUTOSTART</label>
-        <input type="checkbox"></input>
+        {/* <label className="buttons-inverted">AUTOSTART</label> */}
+        {/* <input type="checkbox"></input> */}
         <br />
         <label className="buttons-inverted">SOUND</label>
         <select onChange={handleChangeSound} value={props.soundNumber}>

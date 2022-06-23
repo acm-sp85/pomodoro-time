@@ -12,6 +12,7 @@ function Timer(props) {
   let [toggle, setToggle] = useState(false);
   let [timerActive, setTimerActive] = useState(props.timerActive);
   let [startTimer, setStartTimer] = useState();
+  let [workingTime, setWorkingTime] = useState(props.workingTime);
 
   const { Howl, Howler } = require('howler');
   const audioClips = [Bell, Gong, Duck];
@@ -24,10 +25,12 @@ function Timer(props) {
         setToggleTakingBreak((toggleTakingBreak = !toggleTakingBreak));
         setMinutes((minutes = props.minutesPomodoro));
         console.log('time to work');
+        props.setWorkingTime(true);
       } else if (!toggleTakingBreak) {
         setToggleTakingBreak((toggleTakingBreak = !toggleTakingBreak));
         setMinutes((minutes = props.minutesBreak));
         console.log('taking a break');
+        props.setWorkingTime(false);
       }
     } else if (seconds === 0) {
       setSeconds((seconds = 59));
@@ -53,6 +56,7 @@ function Timer(props) {
   //RESET BUTTON
   const reset = () => {
     setSeconds(0);
+    setTimerActive((timerActive = 'START'));
     if (!toggleTakingBreak) {
       setMinutes(props.minutesPomodoro || 45);
     } else {
@@ -66,12 +70,16 @@ function Timer(props) {
       setMinutes(props.minutesPomodoro || 45);
       setSeconds((seconds = 0));
       setToggleTakingBreak((toggleTakingBreak = !toggleTakingBreak));
+      setTimerActive((timerActive = 'START'));
       console.log('skipping the break');
+      props.setWorkingTime(true);
     } else {
       setMinutes(props.minutesBreak || 5);
       setSeconds((seconds = 0));
       setToggleTakingBreak((toggleTakingBreak = !toggleTakingBreak));
+      setTimerActive((timerActive = 'START'));
       console.log('skipping the work sesh');
+      props.setWorkingTime(false);
     }
   };
   //AUDIO EFFECT PLAYER
