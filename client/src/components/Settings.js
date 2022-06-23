@@ -69,7 +69,7 @@ function Settings(props) {
         </select>
         <br />
       </form>
-      <button onClick={saveChanges}>SAVE CHANGES FOR NEXT POMODORO</button>
+      <button onClick={saveChanges}>SAVE CHANGES</button>
     </div>
   );
 }
